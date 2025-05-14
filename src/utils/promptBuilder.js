@@ -201,3 +201,49 @@ Databases \\& J2EE & MySQL, PostgreSQL, MongoDB, Oracle DB (exposure), Servlets,
 \\end{document}
 `,
 };
+
+export function buildATSAnalysisPrompt({ jobDescription, resumeLatex }) {
+  return `
+You're an ATS (Applicant Tracking System) expert. Your job is to compare the job description and resume and return an analysis in structured JSON format.
+  ============================
+  🧾 RESUME (latex):
+  ============================
+  ${resumeLatex}
+  ============================
+  📌 JOB DESCRIPTION
+  ============================
+  ${jobDescription}
+  ============================
+  📌 YOUR TASK:
+  ============================
+  1.Analyze the resume and compare it against the job description.
+  2.Identify the missing keywords, underrepresneted skills, or mismatched experience.
+  3.Estimate a typical ATS (Applicant Tracking System ) score (out of 100)
+  4.Suggest specific improvements to help better align the resume with job description.
+  5.Provide a summary of the analysis and recommendations in a clear and concise manner.
+  ============================
+  ===========================
+📝 OUTPUT FORMAT:
+===========================
+Respond ONLY with valid JSON in the following format:
+
+\`\`\`json
+{
+  "atsScore": 75,
+  "gaps": [
+    "Years of experience is 4+, but JD requires 6.",
+    "NGINX is not mentioned.",
+    "Swagger missing from resume.",
+    "Retail domain not highlighted."
+  ],
+  "improvements": [
+    "Add NGINX to Web Technologies.",
+    "Mention Swagger (OpenAPI) with REST APIs.",
+    "Highlight any retail/eCommerce domain exposure.",
+    "Include Docker/Kubernetes for containerization."
+  ],
+  "summary": "The resume has a strong foundation in Java full-stack development, but lacks domain-specific keywords and some tools. By addressing these gaps, the ATS match can significantly improve."
+}
+\`\`\`
+`.trim();
+}

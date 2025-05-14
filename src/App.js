@@ -5,8 +5,10 @@ import CoverLetter from "./components/CoverLetter";
 import ColdEmail from "./components/ColdEmail";
 import ResumeDiffViewer from "./components/ResumeDiffViewer";
 import "./App.css";
-
+import ATSAnalysis from "./components/ATSAnalysis";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
+
   const [activeTab, setActiveTab] = useState("resume");
   const [jobDescription, setJobDescription] = useState("");
   const [originalResume, setOriginalResume] = useState("");
@@ -15,9 +17,18 @@ function App() {
   const [updatedLatex, setUpdatedLatex] = useState("");
 
   return (
-    <div className="app-container">
-      <JDInput />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<JDInput onJDUpdate={setJobDescription} />} />
+        <Route
+          path="/ats-analysis"
+          element={<ATSAnalysis jobDesc={jobDescription} />}
+        />
+      </Routes>
+    </Router>
+    // <div className="app-container">
+    //   <JDInput />
+    // </div>
   );
 }
 

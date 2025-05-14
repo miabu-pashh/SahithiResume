@@ -9,6 +9,8 @@ import {
 import { callGeminiAPI } from "../utils/apiHandler";
 import "../CSS/JDInput.css";
 
+import { useNavigate } from "react-router-dom";
+
 function JDInput({ onJDUpdate }) {
   const [jobDesc, setJobDesc] = useState("");
   const [loading, setLoading] = useState(false);
@@ -18,6 +20,11 @@ function JDInput({ onJDUpdate }) {
   const [adonsLatex, setAdonsLatex] = useState("");
   const [coverLetter, setCoverLetter] = useState("");
   const [coldEmail, setColdEmail] = useState("");
+
+  const [showModal, setShowModal] = useState(false); // Controls popup visibility
+  const [latexResume, setLatexResume] = useState(""); // Stores pasted LaTeX resume
+
+  const navigate = useNavigate();
 
   const handleGenerate = async () => {
     if (!jobDesc.trim()) return;
@@ -77,7 +84,6 @@ function JDInput({ onJDUpdate }) {
             value={jobDesc}
             onChange={(e) => setJobDesc(e.target.value)}
           />
-
           <button
             className="generate-btn"
             onClick={handleGenerate}
@@ -85,11 +91,26 @@ function JDInput({ onJDUpdate }) {
           >
             {loading ? "Generating..." : "Generate Tailored Content"}
           </button>
+          <button
+            style={{
+              marginTop: "1rem",
+              backgroundColor: "#004aad",
+              color: "white",
+              padding: "0.5rem 1rem",
+              border: "none",
+              borderRadius: "4px",
+            }}
+            onClick={() => navigate("/ats-analysis")}
+          >
+            🔍 Compare Resume with JD (ATS Score)
+          </button>
 
           <div className="mini-grid">
             {renderBox("Summary", summaryLatex)}
             {renderBox("Tech Skills", skillsLatex)}
-            {renderBox("Work Exp", `${metlifeLatex}\n\n${adonsLatex}`)}
+            {renderBox("Met Life Work Exp", `${metlifeLatex}`)}
+            {/* {renderBox("Work Exp", `${metlifeLatex}\n\n${adonsLatex}`)} */}
+            {renderBox("Adons Work Exp", `${adonsLatex}`)}
           </div>
         </div>
 
@@ -98,6 +119,82 @@ function JDInput({ onJDUpdate }) {
           {renderBox("ColdMail For Given Job", coldEmail)}
         </div>
       </div>
+
+      {showModal && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 1000,
+          }}
+        >
+          <div
+            style={{
+              background: "white",
+              padding: "2rem",
+              borderRadius: "10px",
+              width: "80%",
+              maxWidth: "700px",
+            }}
+          >
+            <h2>📄 Paste Your Full LaTeX Resume</h2>
+            <textarea
+              rows="12"
+              value={latexResume}
+              onChange={(e) => setLatexResume(e.target.value)}
+              placeholder="Paste your full LaTeX resume code here..."
+              style={{
+                width: "90%",
+                padding: "1rem",
+                marginTop: "1rem",
+                background: "#f1f1f1",
+                border: "1px solid #ccc",
+                borderRadius: "6px",
+                fontFamily: "monospace",
+              }}
+            />
+            <div style={{ marginTop: "1rem", textAlign: "right" }}>
+              <button
+                onClick={() => setShowModal(false)}
+                style={{
+                  marginRight: "1rem",
+                  background: "#ccc",
+                  padding: "0.5rem 1rem",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                }}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  // 🚀 Trigger API call in next step
+                  console.log("Submitted Resume:", latexResume);
+                  setShowModal(false);
+                }}
+                style={{
+                  background: "#0077cc",
+                  color: "white",
+                  padding: "0.5rem 1.2rem",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                }}
+              >
+                Submit for Comparison
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
