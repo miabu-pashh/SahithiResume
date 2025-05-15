@@ -6,6 +6,9 @@ import {
   coverLetterTemplate,
   coldEmailTemplate,
 } from "../utils/promptBuilder";
+import { buildGeminiPromptForJD } from "../utils/promptBuilder";
+
+import { callGeminiAPIforJD } from "../utils/apiHandler";
 import { callGeminiAPI } from "../utils/apiHandler";
 import "../CSS/JDInput.css";
 
@@ -25,6 +28,27 @@ function JDInput({ onJDUpdate }) {
   const [latexResume, setLatexResume] = useState(""); // Stores pasted LaTeX resume
 
   const navigate = useNavigate();
+
+  const [jobResult, setJobResult] = useState("");
+  const [showJobModal, setShowJobModal] = useState(false);
+
+  const handleJD = async () => {
+    if (!jobDesc.trim()) return;
+    setLoading(true);
+    if (onJDUpdate) onJDUpdate(jobDesc);
+
+    const prompt = buildGeminiPromptForJD({
+      jobDescription: jobDesc,
+      resumeTemplate: resumeTemplate.full,
+    });
+
+    const result = await callGeminiAPIforJD(prompt);
+
+    setJobResult(result.result || "");
+    setLoading(false);
+    setShowJobModal(true);
+    // setJobModal(true);
+  };
 
   const handleGenerate = async () => {
     if (!jobDesc.trim()) return;
@@ -46,7 +70,6 @@ function JDInput({ onJDUpdate }) {
     setAdonsLatex(result.adonsLatex || "");
     setCoverLetter(result.coverLetter || "");
     setColdEmail(result.coldEmail || "");
-
     setLoading(false);
   };
 
@@ -84,6 +107,35 @@ function JDInput({ onJDUpdate }) {
             value={jobDesc}
             onChange={(e) => setJobDesc(e.target.value)}
           />
+          <button
+            className="generate-btn"
+            onClick={handleJD}
+            disabled={loading}
+          >
+            {loading ? "Checking Job..." : "Job Matching/Unmatching"}
+          </button>
+          {jobResult && (
+            <div className="overlay">
+              <div className="modal job-analysis-modal">
+                <button className="close-btn" onClick={() => setJobResult("")}>
+                  ×
+                </button>
+                <h2>🧠 Job Compatibility Analysis</h2>
+                <div className="modal-content">
+                  {jobResult.split(/\*\*(.*?)\*\*/g).map((chunk, index) =>
+                    index % 2 === 1 ? (
+                      <h4 key={index} className="highlight-heading">
+                        {chunk}
+                      </h4>
+                    ) : (
+                      <p key={index}>{chunk}</p>
+                    )
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
           <button
             className="generate-btn"
             onClick={handleGenerate}
@@ -190,6 +242,63 @@ function JDInput({ onJDUpdate }) {
                 }}
               >
                 Submit for Comparison
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {showJobModal && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 1100,
+          }}
+        >
+          <div
+            style={{
+              background: "white",
+              padding: "2rem",
+              borderRadius: "10px",
+              width: "90%",
+              maxWidth: "800px",
+              maxHeight: "80vh",
+              overflowY: "auto",
+            }}
+          >
+            <h2>📋 Job Compatibility Analysis</h2>
+            <div
+              style={{
+                whiteSpace: "pre-wrap",
+                background: "#f5f5f5",
+                padding: "1rem",
+                borderRadius: "8px",
+                fontFamily: "monospace",
+                marginTop: "1rem",
+              }}
+            >
+              {jobResult}
+            </div>
+            <div style={{ marginTop: "1rem", textAlign: "right" }}>
+              <button
+                onClick={() => setShowJobModal(false)}
+                style={{
+                  background: "#0077cc",
+                  color: "white",
+                  padding: "0.5rem 1rem",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                }}
+              >
+                Close
               </button>
             </div>
           </div>
