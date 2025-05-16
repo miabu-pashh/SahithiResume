@@ -23,6 +23,7 @@ function JDInput({ onJDUpdate }) {
   const [adonsLatex, setAdonsLatex] = useState("");
   const [coverLetter, setCoverLetter] = useState("");
   const [coldEmail, setColdEmail] = useState("");
+  const [FinalResumeLatex, setFinalResumeLatex] = useState("");
 
   const [showModal, setShowModal] = useState(false); // Controls popup visibility
   const [latexResume, setLatexResume] = useState(""); // Stores pasted LaTeX resume
@@ -70,6 +71,7 @@ function JDInput({ onJDUpdate }) {
     setAdonsLatex(result.adonsLatex || "");
     setCoverLetter(result.coverLetter || "");
     setColdEmail(result.coldEmail || "");
+    setFinalResumeLatex(result.FinalResumeLatex || "");
     setLoading(false);
   };
 
@@ -158,6 +160,7 @@ function JDInput({ onJDUpdate }) {
           </button>
 
           <div className="mini-grid">
+            {renderBox("Final Resume", FinalResumeLatex)}
             {renderBox("Summary", summaryLatex)}
             {renderBox("Tech Skills", skillsLatex)}
             {renderBox("Met Life Work Exp", `${metlifeLatex}`)}

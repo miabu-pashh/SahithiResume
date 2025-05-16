@@ -53,9 +53,11 @@ Based on the job description below:
    - Rewrite all bullet points based on job description.
    - Return the full LaTeX block for Adons Soft Tech.
 
+
 5. 📄 Generate a professional **cover letter** using the cover letter template, aligned with the job description and resume summary.
 
 6. ✉️ Generate a personalized **cold email** to reach out to a recruiter, based on the cold email template and resume.
+7.With the above poits updated for latex,  Give me the Final latex code for the resume.
 
 ===========================
 📝 OUTPUT FORMAT:
@@ -74,7 +76,8 @@ Example format:
   "metlifeLatex": "Your LaTeX block for MetLife experience with \\\\item ...",
   "adonsLatex": "Your LaTeX block for Adons Soft Tech experience...",
   "coverLetter": "Plain text cover letter.",
-  "coldEmail": "Plain text cold email."
+  "coldEmail": "Plain text cold email.",
+  "FinalResumeLatex": "Final LaTeX code for the resume , make sure you dont do any changes to the nagarro work experince , and output latex with escaped text like \\\\documentclass{resume} and \\\\end{document}..."
 }
 \`\`\`
 ===========================
@@ -126,18 +129,17 @@ export const resumeTemplate = {
 \\usepackage{graphicx}
 \\usepackage{enumitem}
 
-\\begin{document}
+
 \\name{\\textbf{Mahaboob Pasha Mohammad}}
 \\address{Software Engineer \\ \\href{https://miabu-pashh.github.io/Portfolio-maibu/}{Website}}
 \\address{Saint Louis, MO \\ +1 (314) 305 6056 \\ \\href{mailto:mahaboobpashamohammad1@gmail.com}{mahaboobpashamohammad1@gmail.com} \\ \\href{https://www.linkedin.com/in/mohammad-mahaboob-pasha-19ba58183/}{LinkedIn}}
-
+\\begin{document}
 \\vspace{-1em}
 \\begin{rSection}{Summary}
 \\begin{itemize}[leftmargin=*]
     \\item Software Engineer with expertise in Banking, HealthCare, and eCommerce sectors using Java Full Stack Development (React/Angular) with 4+ years of experience delivering robust and scalable software solutions.
 \\end{itemize}
 \\end{rSection}
-
 \\vspace{-0.8em}
 \\begin{rSection}{Technical Skills}
 \\begin{tabular}{ @{} >{\\bfseries}l @{\\hspace{2ex}} l }
@@ -202,13 +204,13 @@ Databases \\& J2EE & MySQL, PostgreSQL, MongoDB, Oracle DB (exposure), Servlets,
 `,
 };
 
-export function buildATSAnalysisPrompt({ jobDescription, resumeLatex }) {
+export function buildATSAnalysisPrompt({ jobDescription, resumeTemplate }) {
   return `
 You're an ATS (Applicant Tracking System) expert. Your job is to compare the job description and resume and return an analysis in structured JSON format.
   ============================
   🧾 RESUME (latex):
   ============================
-  ${resumeLatex}
+  ${resumeTemplate}
   ============================
   📌 JOB DESCRIPTION
   ============================
@@ -248,67 +250,32 @@ Respond ONLY with valid JSON in the following format:
 `.trim();
 }
 
-export function buildGeminiPromptForJD({ jobDescription, resumeLatex }) {
-  return `
-  You are an expert in analysing the given Job description. Make sure you give the best respose by considering the given below points.
-
-  ============================
-  🧾 RESUME (latex)   :
-  ============================
-  ${resumeLatex}
-  ============================
-  📌 JOB DESCRIPTION
-  ============================
-  ${jobDescription}
-  ============================
-  📌 YOUR TASK:
-  1. Identify the key skills and qualifications required for the job. If the Job is above 5 years of experience,Then this is not suitable to apply for this job.
-  2. Highlight any specific technologies, tools, or methodologies mentioned in the job description. You have the resume latex code, so you can check the resume and see if the resume has the same skills or not. If the Resume has most of the skills and lacks only few skills, then the resume is commpatable and user can apply for this job.
-  3. Look for any certifications or educational qualifications that are emphasized in the job description. The user has a master degree, so this is not a problem.
-  4. Pay attention to the soft skills or personal attributes that are mentioned. The user has a good experience in this, so this is not a problem.
-  5. If the JD is for a specific industry or domain, note any relevant experience that is required.
-  6.If the JD requires US citizenship or Green Card, then the user is not eligible to apply for this job.
-  7. If the JD requires a specific location, show the details to update the user location in resume.
-  8.OPT/CPT, H1B, and EAD are not valid for this job. If this is mentioned in the JD, then the user is not eligible to apply for this job.
-  9.Make sure if the user is eligible to apply for this job or not.
-  10. Also make sure to give the best response by considering the above points.
-  ============================
- ============================
-📝 OUTPUT FORMAT:
-============================
-Respond ONLY with valid JSON in the following format:
-
-{
-  "result": "Your explanation and advice here as plain text."
-}
-  `.trim();
-}
-
 // export function buildGeminiPromptForJD({ jobDescription, resumeLatex }) {
 //   return `
-// You are an expert in analyzing job descriptions and determining resume compatibility. Based on the job description and LaTeX resume, follow the checklist below and return a JSON object.
+//   You are an expert in analysing the given Job description. Make sure you give the best respose by considering the given below points.
 
-// ============================
-// 📄 RESUME (LaTeX Format):
-// ============================
-// ${resumeLatex}
-
-// ============================
-// 📌 JOB DESCRIPTION:
-// ============================
-// ${jobDescription}
-
-// ============================
-// ✅ YOUR TASK:
-// ============================
-// 1. Identify skills, tools, and qualifications mentioned in the job description.
-// 2. Check if the resume contains most of those skills.
-// 3. Flag if the JD requires >5 years experience and the resume doesn't match.
-// 4. Flag any eligibility blockers like needing US citizenship or disallowing OPT/CPT.
-// 5. Suggest improvements to the resume if needed.
-// 6. Conclude if the user should apply or not.
-
-// ============================
+//   ============================
+//   🧾 RESUME (latex)   :
+//   ============================
+//   ${resumeLatex}
+//   ============================
+//   📌 JOB DESCRIPTION
+//   ============================
+//   ${jobDescription}
+//   ============================
+//   📌 YOUR TASK:
+//   1. Identify the key skills and qualifications required for the job. If the Job is above 5 years of experience,Then this is not suitable to apply for this job.
+//   2. Highlight any specific technologies, tools, or methodologies mentioned in the job description. You have the resume latex code, so you can check the resume and see if the resume has the same skills or not. If the Resume has most of the skills and lacks only few skills, then the resume is commpatable and user can apply for this job.
+//   3. Look for any certifications or educational qualifications that are emphasized in the job description. The user has a master degree, so this is not a problem.
+//   4. Pay attention to the soft skills or personal attributes that are mentioned. The user has a good experience in this, so this is not a problem.
+//   5. If the JD is for a specific industry or domain, note any relevant experience that is required.
+//   6.If the JD requires US citizenship or Green Card, then the user is not eligible to apply for this job.
+//   7. If the JD requires a specific location, show the details to update the user location in resume.
+//   8.OPT/CPT, H1B, and EAD are not valid for this job. If this is mentioned in the JD, then the user is not eligible to apply for this job.
+//   9.Make sure if the user is eligible to apply for this job or not.
+//   10. Also make sure to give the best response by considering the above points.
+//   ============================
+//  ============================
 // 📝 OUTPUT FORMAT:
 // ============================
 // Respond ONLY with valid JSON in the following format:
@@ -316,7 +283,42 @@ Respond ONLY with valid JSON in the following format:
 // {
 //   "result": "Your explanation and advice here as plain text."
 // }
-
-// Do NOT include markdown or commentary outside the JSON.
-// `.trim();
+//   `.trim();
 // }
+
+export function buildGeminiPromptForJD({ jobDescription, resumeLatex }) {
+  return `
+You are an expert in analyzing job descriptions and determining resume compatibility. Based on the job description and LaTeX resume, follow the checklist below and return a JSON object.
+
+============================
+📄 RESUME (LaTeX Format):
+============================
+${resumeLatex}
+
+============================
+📌 JOB DESCRIPTION:
+============================
+${jobDescription}
+
+============================
+✅ YOUR TASK:
+============================
+1. Identify skills, tools, and qualifications mentioned in the job description.
+2. Check if the resume contains most of those skills.
+3. Flag if the JD requires >5 years experience and the resume doesn't match.
+4. Flag any eligibility blockers like needing US citizenship or disallowing OPT/CPT.
+5. Suggest improvements to the resume if needed.
+6. Conclude if the user should apply or not.
+
+============================
+📝 OUTPUT FORMAT:
+============================
+Respond ONLY with valid JSON in the following format:
+
+{
+  "result": "Your explanation and advice here as plain text."
+}
+
+Do NOT include markdown or commentary outside the JSON.
+`.trim();
+}

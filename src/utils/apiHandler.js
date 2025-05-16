@@ -58,6 +58,7 @@ export async function callGeminiAPI(prompt) {
       adonsLatex: parsed.adonsLatex || "",
       coverLetter: parsed.coverLetter || "",
       coldEmail: parsed.coldEmail || "",
+      FinalResumeLatex: parsed.FinalResumeLatex || "",
     };
   } catch (error) {
     console.error("Gemini API Error:", error.response?.data || error.message);
@@ -72,6 +73,7 @@ export async function callGeminiAPI(prompt) {
       adonsLatex: "",
       coverLetter: "",
       coldEmail: "",
+      FinalResumeLatex: "",
       // analysis: "", // fallback in case ATS fails
     };
   }
