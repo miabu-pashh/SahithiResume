@@ -136,6 +136,8 @@ export async function callGeminiAPIforJD(prompt) {
   const apiKey = process.env.REACT_APP_GEMINI_API_KEY;
 
   try {
+    console.log("🛠️ Prompt Sent to Gemini:\n", prompt); // 🔍 log the prompt
+
     const response = await axios.post(
       `${GEMINI_API_URL}?key=${apiKey}`,
       {
@@ -153,14 +155,11 @@ export async function callGeminiAPIforJD(prompt) {
       }
     );
 
-    console.log(
-      "📩 Raw Response Text:\n",
-      response.data.candidates?.[0]?.content?.parts?.[0]?.text || ""
-    );
-
     const raw = response.data.candidates?.[0]?.content?.parts?.[0]?.text || "";
-    const cleaned = raw.replace(/```json|```/g, "").trim();
+    // console.log("📩 Raw Gemini Response:\n", raw); // 🔍 log the raw response
 
+    const cleaned = raw.replace(/```json|```/g, "").trim();
+    console.log("📩 Cleaned Gemini Response:\n", cleaned); // 🔍 log the cleaned response
     let parsed = {};
     try {
       parsed = JSON.parse(cleaned);

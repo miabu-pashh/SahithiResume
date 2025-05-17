@@ -37,13 +37,13 @@ Based on the job description below:
    - Return valid LaTeX code for the entire \`\\begin{rSection}{Summary}...\` block.
 
 2. 🛠 Update the **Technical Skills section**:
-   - Just add the skills wich are mandator for the given job description.
-   -When you add the new skills, try to remove the unwanted skills which are not relevant to the job description and make sure the total skills are same as before.
+   - Make sure The skills I have in my resume are not touched, only remove the unwated skills and add the skills which are mandatory for the job description.
+   -When you add the new skills, try to remove the unwanted skills which are not relevant to the job description and make sure the total number of skills are same as before.
    - Return updated LaTeX code for the full \`\\begin{rSection}{Technical Skills}...\` block.
 
 3. 🏢 Update **MetLife experience**:
---Use new strong unique action verbs without repeating the same verbs which are not present in my resume.
-   -No buzz words add a quantitaive measure for the new bullet point.
+    -Use new strong unique action verbs without repeating the same verbs which are not present in my resume.
+  -No buzz words add a quantitaive measure for the new bullet point.
    - Rewrite all bullet points based on job description.
    - Return the entire LaTeX block for MetLife with original heading and structure unchanged.
 
@@ -77,7 +77,7 @@ Example format:
   "adonsLatex": "Your LaTeX block for Adons Soft Tech experience...",
   "coverLetter": "Plain text cover letter.",
   "coldEmail": "Plain text cold email.",
-  "FinalResumeLatex": "Final LaTeX code for the resume , make sure you dont do any changes to the nagarro work experince , and output latex with escaped text like \\\\documentclass{resume} and \\\\end{document}..."
+  "FinalResumeLatex": "Final LaTeX code for the resume , make sure you dont do any changes to the nagarro work experience , and output latex with escaped text like \\\\documentclass{resume} and \\\\end{document}..."
 }
 \`\`\`
 ===========================
@@ -207,7 +207,8 @@ Databases \\& J2EE & MySQL, PostgreSQL, MongoDB, Oracle DB (exposure), Servlets,
 export function buildATSAnalysisPrompt({ jobDescription, resumeTemplate }) {
   return `
 You're an ATS (Applicant Tracking System) expert. Your job is to compare the job description and resume and return an analysis in structured JSON format.
-  ============================
+  
+ ============================
   🧾 RESUME (latex):
   ============================
   ${resumeTemplate}
@@ -216,9 +217,11 @@ You're an ATS (Applicant Tracking System) expert. Your job is to compare the job
   ============================
   ${jobDescription}
   ============================
+  ============================
   📌 YOUR TASK:
   ============================
-  1.Analyze the resume and compare it against the job description.
+  Based on the job description below:
+  1.Analyze the resume given to you here in the latex form,  and compare it against the job description.
   2.Identify the missing keywords, underrepresneted skills, or mismatched experience.
   3.Estimate a typical ATS (Applicant Tracking System ) score (out of 100)
   4.Suggest specific improvements to help better align the resume with job description.
@@ -286,14 +289,14 @@ Respond ONLY with valid JSON in the following format:
 //   `.trim();
 // }
 
-export function buildGeminiPromptForJD({ jobDescription, resumeLatex }) {
+export function buildGeminiPromptForJD({ jobDescription, resumeTemplate }) {
   return `
 You are an expert in analyzing job descriptions and determining resume compatibility. Based on the job description and LaTeX resume, follow the checklist below and return a JSON object.
 
 ============================
 📄 RESUME (LaTeX Format):
 ============================
-${resumeLatex}
+${resumeTemplate}
 
 ============================
 📌 JOB DESCRIPTION:
