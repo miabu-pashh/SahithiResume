@@ -54,9 +54,9 @@ Based on the job description below:
    - Return the full LaTeX block for Adons Soft Tech.
 
 
-5. 📄 Generate a professional **cover letter** using the cover letter template, aligned with the job description and resume summary.
+5. 📄 Generate a professional **cover letter** using the cover letter template given to you, aligned with the job description. You have my resume and my cover letter template with you, just update my cover letter tempalte given to you.
 
-6. ✉️ Generate a personalized **cold email** to reach out to a recruiter, based on the cold email template and resume.
+6. ✉️ Generate a personalized **cold email** to reach out to a recruiter, based on the cold email template and resume. make sure to update the cold email template with the job. make sure to include the missing values in the cold email template.
 7.With the above poits updated for latex,  Give me the Final latex code for the resume.
 
 ===========================
@@ -87,35 +87,6 @@ ${jobDescription}
   `.trim();
 }
 
-// / coverLetterTemplate.js
-export const coverLetterTemplate = `
-Dear [Hiring Manager's Name],
-
-I am writing to express my interest in the [Job Title] position at [Company Name]. With my background in [brief summary of relevant experience or skills], I am confident that I can make meaningful contributions to your team.
-
-Throughout my career, I have [mention one or two relevant accomplishments]. My technical proficiency in [mention relevant tools/technologies] and my ability to [mention soft skill or team contribution] have helped me consistently deliver high-impact results.
-
-I am enthusiastic about the opportunity to work with [Company Name] and contribute to your innovative projects. I would welcome the chance to further discuss how my skills align with your needs.
-
-Thank you for considering my application.
-
-Sincerely,
-Mahaboob Pasha Mohammad
-`;
-
-// coldEmailTemplate.js
-export const coldEmailTemplate = `
-Hi [Recruiter/HR Name],
-
-I hope you're doing well. I came across your recent job posting for [Job Title] at [Company Name], and I wanted to express my keen interest.
-
-With over 4 years of experience in Java Full Stack Development, working with technologies like React, Angular, Spring Boot, and AWS, I believe I can contribute effectively to your team.
-
-I'd be thrilled to connect or learn more about the role. Please let me know if there's a good time to chat.
-
-Thanks and best regards,
-Mahaboob Pasha Mohammad
-`;
 // ✅ resumeTemplate.js
 export const resumeTemplate = {
   full: `
@@ -136,7 +107,7 @@ export const resumeTemplate = {
 \\begin{document}
 \\vspace{-1em}
 \\begin{rSection}{Summary}
-\\begin{itemize}[leftmargin=*]
+\\begin{itemize}[leftmargin=*, itemsep=-0.5em, topsep=0em]
     \\item Software Engineer with expertise in Banking, HealthCare, and eCommerce sectors using Java Full Stack Development (React/Angular) with 4+ years of experience delivering robust and scalable software solutions.
 \\end{itemize}
 \\end{rSection}
@@ -157,7 +128,8 @@ Databases \\& J2EE & MySQL, PostgreSQL, MongoDB, Oracle DB (exposure), Servlets,
 \\begin{rSection}{Experience}
 
 \\textbf{Software Engineer} \\textbar{} MetLife \\textbar{} Missouri, USA \\hfill \\textbf{Aug 2024 -- Present}
-\\begin{itemize}[leftmargin=*]
+\\vspace{-0.5em}
+\\begin{itemize}[leftmargin=*, itemsep=-0.5em, topsep=0em]
     \\item Implemented Agile methodologies, boosting team productivity by \\textbf{15\\%} and accelerating project delivery by \\textbf{20\\%}.
     \\item Engineered high-performance applications using Core Java, Spring Boot, and Microservices, improving scalability by \\textbf{30\\%} and reducing downtime by \\textbf{20\\%}.
     \\item Developed responsive front-end interfaces using React.js, Angular, HTML, CSS, and JavaScript, achieving \\textbf{98\\%} cross-browser compatibility. Deployed AWS-based applications, reducing infrastructure costs by \\textbf{20\\%}.
@@ -165,14 +137,17 @@ Databases \\& J2EE & MySQL, PostgreSQL, MongoDB, Oracle DB (exposure), Servlets,
 
 \\vspace{-0.5em}
 \\textbf{Software Engineer (Java)} \\textbar{} Nagarro Software Limited \\textbar{} India \\hfill \\textbf{Aug 2021 -- Dec 2022}
-\\begin{itemize}[leftmargin=*]
-    \\item Led BFSI team to implement REST APIs enabling real-time chat between React frontend and Java backend, improving app efficiency by \\textbf{75\\%}.
-    \\item Collaborated on Siemens web portal using Mendix and Java, achieving a \\textbf{80\\%} reduction in development time and streamlined backend enhancements.
+\\vspace{-0.5em}
+\\begin{itemize}[leftmargin=*, itemsep=-0.5em, topsep=0em]
+    \\item \\textbf {Banking, Financial Services, and Insurance (BFSI)} lead for this team and Implemented REST APIs for seamless communication between front-end (React) and back-end (Java) for Realtime chat communication for banking domain
+website to reduce the confusion among new customers visiting the website, improving app efficiency by \\textbf{75\\%}.
+    \\item \\textbf {Mendix Development}: Collaborated on Siemens web portal using Mendix and Java, achieving a \\textbf{80\\%} reduction in development time and streamlined backend enhancements.
 \\end{itemize}
 
-\\vspace{-0.5em}
+\\vspace{-1.5em}
 \\textbf{Software Engineer} \\textbar{} Adons Soft Tech \\textbar{} India \\hfill \\textbf{Jan 2020 -- Aug 2021}
-\\begin{itemize}[leftmargin=*]
+\\vspace{-0.5em}
+\\begin{itemize}[leftmargin=*, itemsep=-0.5em, topsep=0em]
     \\item Led waterfall project workflows, achieving \\textbf{100\\%} on-time delivery and maintaining clear phase-gate reviews.
     \\item Developed high-performance backend systems using Core Java, Servlets, JSP, and JDBC, improving processing speed by \\textbf{45\\%}.
     \\item Designed responsive UIs using HTML, CSS, Bootstrap, and JavaScript, enhancing user experience and increasing traffic by \\textbf{20\\%}.
@@ -180,7 +155,8 @@ Databases \\& J2EE & MySQL, PostgreSQL, MongoDB, Oracle DB (exposure), Servlets,
 
 \\vspace{-0.5em}
 \\textbf{Co-Founder \\& Engineer} \\textbar{} Nithya Industries (Startup) \\textbar{} India \\hfill \\textbf{May 2021 -- Jan 2024}
-\\begin{itemize}[leftmargin=*]
+\\vspace{-0.5em}
+\\begin{itemize}[leftmargin=*, itemsep=-0.5em, topsep=0em]
     \\item Spearheaded product design and marketing initiatives, launching \\textbf{5+} technical catalogues and campaigns, increasing retention by \\textbf{30\\%} and attracting clients from \\textbf{3+} countries.
 \\end{itemize}
 
@@ -188,7 +164,7 @@ Databases \\& J2EE & MySQL, PostgreSQL, MongoDB, Oracle DB (exposure), Servlets,
 
 \\vspace{-0.8em}
 \\begin{rSection}{Achievements}
-\\begin{itemize}[leftmargin=*]
+\\begin{itemize}[leftmargin=*, itemsep=-0.5em, topsep=0em]
     \\item Developed MVPs and POCs for \\textbf{5+} innovative software tools; ongoing research in scalable product solutions.
     \\item National Champions, Mega ATV Championship 2021.
 \\end{itemize}
@@ -199,10 +175,98 @@ Databases \\& J2EE & MySQL, PostgreSQL, MongoDB, Oracle DB (exposure), Servlets,
 \\textbf{Master of Science in Computer Software Engineering} \\textbar{} Saint Louis University, Missouri, USA \\\\
 \\textbf{Bachelor of Engineering in Mechanical Engineering} \\textbar{} GRIET, Telangana, India
 \\end{rSection}
-
 \\end{document}
 `,
 };
+
+// / coverLetterTemplate.js
+export const coverLetterTemplate = `
+Mahaboob Pasha Mohammad  
+mahaboobpashamohammad1@gmail.com | +(314)-305-6056 | 3615 Olive Street, Apt 1405  
+
+[Today’s Date]  
+Hiring Manager  
+[Company Address]  
+
+Dear Hiring Manager,
+
+I am writing to express my enthusiasm for the [Position] opportunity at [Company Name], as advertised. With over four years of hands-on experience in full-stack software development and a Master’s degree in Software Engineering from Saint Louis University, I am eager to contribute to your team and bring in innovative solutions that enhance system performance and user satisfaction.
+
+I believe the organization's mission and type of work are closely aligned with my professional interests. Your organization’s focus on [type of work the company does] resonates with my passion for delivering scalable, efficient, and user-friendly applications.
+
+In my current role at MetLife, I have led multiple Agile teams to develop high-availability backend systems using Core Java, Spring Boot, and Microservices, achieving a 30% improvement in scalability. My front-end development skills in React.js and Angular, coupled with efficient AWS deployments, resulted in a 20% reduction in operational costs.
+
+My previous roles at Nagarro and Adons Soft Tech further strengthened my capabilities in building robust web applications and optimizing system performance. At Nagarro, I implemented real-time chat systems in the BFSI domain and developed rapid low-code applications using Mendix. At Adons, I accelerated backend processing by 45% through Java-based solutions and improved user experience with responsive UI design.
+
+With a Master’s degree in Software Engineering and extensive experience gained throughout my career, I am now equipped to innovate and solve real-world problems by developing software applications powered by machine learning and intelligent backend agents. Several of these innovative projects are showcased on my website for reference.
+
+I am particularly drawn to [Company Name]’s values around innovation and collaboration, and I am confident that my background and skills will allow me to meaningfully contribute to your projects from day one.
+
+Thank you for considering my application. I’ve attached my resume for your review and would welcome the opportunity to further discuss how I can support your team. I can be reached at +1 (314)-305-6056 or via email at mahaboobpashamohammad1@gmail.com.
+
+Warm regards,  
+Mahaboob Pasha Mohammad  
+LinkedIn: https://www.linkedin.com/in/mohammad-mahaboob-pasha-19ba58183/  
+Portfolio: https://miabu-pashh.github.io/Portfolio-maibu/  
+GitHub: https://github.com/miabu-pashh
+`;
+
+// coldEmailTemplate.js
+export const coldEmailTemplate = `
+Subject: Experienced Java Full-Stack Engineer – Open to Opportunities
+
+Hi [Hiring Manager’s Name],
+
+I hope you're doing well. My name is Mahaboob Pasha Mohammad, and I’m a Software Engineer with over 4 years of experience in Java Full Stack Development, currently working at MetLife. I recently completed my Master’s in Software Engineering at Saint Louis University and have built scalable backend systems and responsive frontend apps across BFSI, Healthcare, and eCommerce domains.
+
+I’m reaching out to explore any potential opportunities at [Company Name] where my background in Core Java, Spring Boot, Microservices, and React/Angular could add value. I’ve attached my resume and cover letter for your reference and would welcome a brief chat if you're open to connecting.
+
+Thank you for your time and consideration.
+
+Best regards,  
+Mahaboob Pasha Mohammad  
+mahaboobpashamohammad1@gmail.com | (314) 305-6056  
+LinkedIn: https://www.linkedin.com/in/mohammad-mahaboob-pasha-19ba58183/  
+Portfolio: https://miabu-pashh.github.io/Portfolio-maibu/  
+GitHub: https://github.com/miabu-pashh
+`;
+
+export const referralEmailTemplate = `
+Subject: Quick Referral Request for [Job Title] Role at [Company Name]
+
+Hi [Referral's Name],
+
+I hope you're doing well! I came across the [Job Title] opening at [Company Name] and noticed you're connected with the team. I’m currently seeking full-time roles where I can leverage my experience in Java Full Stack development, Spring Boot, React, and AWS to build high-impact applications.
+
+Would you be open to referring me or pointing me in the right direction? I’ve attached my resume for your reference, and I’d be happy to provide a tailored message if needed.
+
+Thanks so much for your time and support!
+
+Warm regards,  
+Mahaboob Pasha Mohammad  
+mahaboobpashamohammad1@gmail.com | (314) 305-6056  
+LinkedIn: https://www.linkedin.com/in/mohammad-mahaboob-pasha-19ba58183/  
+Portfolio: https://miabu-pashh.github.io/Portfolio-maibu/
+`;
+
+export const jobApplicationEmailTemplate = `
+Subject: Application for [Job Title] – Mahaboob Pasha Mohammad
+
+Dear [Hiring Manager's Name],
+
+I am excited to apply for the [Job Title] position at [Company Name]. With over 4 years of experience as a Software Engineer specializing in Java Full Stack development, along with a Master’s degree from Saint Louis University, I am confident in my ability to contribute effectively to your team.
+
+Please find my resume and cover letter attached for your review. I would welcome the opportunity to speak further about how my experience aligns with your current needs.
+
+Thank you for your time and consideration.
+
+Best regards,  
+Mahaboob Pasha Mohammad  
+mahaboobpashamohammad1@gmail.com | (314) 305-6056  
+LinkedIn: https://www.linkedin.com/in/mohammad-mahaboob-pasha-19ba58183/  
+Portfolio: https://miabu-pashh.github.io/Portfolio-maibu/  
+GitHub: https://github.com/miabu-pashh
+`;
 
 export function buildATSAnalysisPrompt({ jobDescription, resumeTemplate }) {
   return `
@@ -252,42 +316,6 @@ Respond ONLY with valid JSON in the following format:
 \`\`\`
 `.trim();
 }
-
-// export function buildGeminiPromptForJD({ jobDescription, resumeLatex }) {
-//   return `
-//   You are an expert in analysing the given Job description. Make sure you give the best respose by considering the given below points.
-
-//   ============================
-//   🧾 RESUME (latex)   :
-//   ============================
-//   ${resumeLatex}
-//   ============================
-//   📌 JOB DESCRIPTION
-//   ============================
-//   ${jobDescription}
-//   ============================
-//   📌 YOUR TASK:
-//   1. Identify the key skills and qualifications required for the job. If the Job is above 5 years of experience,Then this is not suitable to apply for this job.
-//   2. Highlight any specific technologies, tools, or methodologies mentioned in the job description. You have the resume latex code, so you can check the resume and see if the resume has the same skills or not. If the Resume has most of the skills and lacks only few skills, then the resume is commpatable and user can apply for this job.
-//   3. Look for any certifications or educational qualifications that are emphasized in the job description. The user has a master degree, so this is not a problem.
-//   4. Pay attention to the soft skills or personal attributes that are mentioned. The user has a good experience in this, so this is not a problem.
-//   5. If the JD is for a specific industry or domain, note any relevant experience that is required.
-//   6.If the JD requires US citizenship or Green Card, then the user is not eligible to apply for this job.
-//   7. If the JD requires a specific location, show the details to update the user location in resume.
-//   8.OPT/CPT, H1B, and EAD are not valid for this job. If this is mentioned in the JD, then the user is not eligible to apply for this job.
-//   9.Make sure if the user is eligible to apply for this job or not.
-//   10. Also make sure to give the best response by considering the above points.
-//   ============================
-//  ============================
-// 📝 OUTPUT FORMAT:
-// ============================
-// Respond ONLY with valid JSON in the following format:
-
-// {
-//   "result": "Your explanation and advice here as plain text."
-// }
-//   `.trim();
-// }
 
 export function buildGeminiPromptForJD({ jobDescription, resumeTemplate }) {
   return `
