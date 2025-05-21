@@ -8,7 +8,6 @@ import "./App.css";
 import ATSAnalysis from "./components/ATSAnalysis";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
-
   const [activeTab, setActiveTab] = useState("resume");
   const [jobDescription, setJobDescription] = useState("");
   const [originalResume, setOriginalResume] = useState("");
@@ -26,9 +25,6 @@ function App() {
         />
       </Routes>
     </Router>
-    // <div className="app-container">
-    //   <JDInput />
-    // </div>
   );
 }
 
