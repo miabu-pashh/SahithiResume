@@ -30,29 +30,6 @@ ${coldEmailTemplate}
 ===========================
 Based on the job description below:
 
-1. ✏️ Update the **Summary section**:
-   - Keep the **first bullet point as-is** from the resume.
-   - Replace the second and third bullet points with two new bullet points relevant to the job description.
-   -Dont add education in professional summary.
-   - Return valid LaTeX code for the entire \`\\begin{rSection}{Summary}...\` block.
-
-2. 🛠 Update the **Technical Skills section**:
-   - Make sure The skills I have in my resume are not touched, only remove the unwated skills and add the skills which are mandatory for the job description.
-   -When you add the new skills, try to remove the unwanted skills which are not relevant to the job description and make sure the total number of skills are same as before.
-   - Return updated LaTeX code for the full \`\\begin{rSection}{Technical Skills}...\` block.
-
-3. 🏢 Update **MetLife experience**:
-    -Use new strong unique action verbs without repeating the same verbs which are not present in my resume.
-  -No buzz words add a quantitaive measure for the new bullet point.
-   - Rewrite all bullet points based on job description.
-   - Return the entire LaTeX block for MetLife with original heading and structure unchanged.
-
-4. 🏢 Update **Adons Soft Tech experience**:
--Use new strong unique action verbs without repeating the same verbs which are not present in my resume.
-   -No buzz words add a quantitaive measure for the new bullet point.
-   - Rewrite all bullet points based on job description.
-   - Return the full LaTeX block for Adons Soft Tech.
-
 
 5. 📄 Generate a professional **cover letter** using the cover letter template given to you, aligned with the job description. You have my resume and my cover letter template with you, just update my cover letter tempalte given to you.
 
@@ -71,13 +48,9 @@ All LaTeX content must:
 Example format:
 \`\`\`json
 {
-  "summaryLatex": "Your LaTeX with escaped text like \\\\begin{itemize} and \\\\item ...",
-  "skillsLatex": "Your LaTeX for skills section with \\\\begin{tabular}...",
-  "metlifeLatex": "Your LaTeX block for MetLife experience with \\\\item ...",
-  "adonsLatex": "Your LaTeX block for Adons Soft Tech experience...",
   "coverLetter": "Plain text cover letter.",
   "coldEmail": "Plain text cold email.",
-  "FinalResumeLatex": "Final LaTeX code for the resume , make sure you dont do any changes to the nagarro work experience , and output latex with escaped text like \\\\documentclass{resume} and \\\\end{document}..."
+  "FinalResumeLatex": "Final LaTeX code for the resume , and output latex with escaped text like \\\\documentclass{resume} and \\\\end{document}..."
 }
 \`\`\`
 ===========================
@@ -87,94 +60,82 @@ ${jobDescription}
   `.trim();
 }
 
-// ✅ resumeTemplate.js
 export const resumeTemplate = {
   full: `
-\\documentclass{resume}
-\\usepackage{hyperref}
-\\urlstyle{same}
-\\usepackage[left=0.3in,top=0.2in,right=0.3in,bottom=0.2in]{geometry}
-\\newcommand{\\tab}[1]{\\hspace{.2667\\textwidth}\\rlap{#1}} 
-\\newcommand{\\itab}[1]{\\hspace{0em}\\rlap{#1}}
-\\renewcommand{\\namesize}{\\large}
-\\usepackage{graphicx}
+\\documentclass{article}
+\\usepackage[a4paper,margin=0.3in]{geometry}
 \\usepackage{enumitem}
-
-
-\\name{\\textbf{Mahaboob Pasha Mohammad}}
-\\address{Software Engineer \\ \\href{https://miabu-pashh.github.io/Portfolio-maibu/}{Website}}
-\\address{Saint Louis, MO \\ +1 (314) 305 6056 \\ \\href{mailto:mahaboobpashamohammad1@gmail.com}{mahaboobpashamohammad1@gmail.com} \\ \\href{https://www.linkedin.com/in/mohammad-mahaboob-pasha-19ba58183/}{LinkedIn}}
+\\usepackage[hidelinks]{hyperref}
+\\usepackage{titlesec}
+\\usepackage{parskip}
+\\usepackage{xcolor}
+\\pagenumbering{gobble}
+\\titleformat{\\section}{\\large\\bfseries}{}{0em}{}[\\titlerule]
+\\usepackage{tabularx}
 \\begin{document}
-\\vspace{-1em}
-\\begin{rSection}{Summary}
-\\begin{itemize}[leftmargin=*, itemsep=-0.5em, topsep=0em]
-    \\item Software Engineer with expertise in Banking, HealthCare, and eCommerce sectors using Java Full Stack Development (React/Angular) with 4+ years of experience delivering robust and scalable software solutions.
-\\end{itemize}
-\\end{rSection}
-\\vspace{-0.8em}
-\\begin{rSection}{Technical Skills}
-\\begin{tabular}{ @{} >{\\bfseries}l @{\\hspace{2ex}} l }
-Languages & Core \\& Advanced Java, Java 8/11, Python, C, C++, Golang, SQL \\\\
-Methodologies \\& OS & SDLC, Agile, Waterfall, Requirements Gathering, Linux, Windows, MacOS \\\\
-Frameworks \\& IDEs & Spring (MVC, Boot, Security), Microservices, Hibernate, JPA, JSF, React.JS, Vue.JS, Node.JS, Eclipse, IntelliJ, VS Code \\\\
-Web Technologies & HTML, CSS, JavaScript, TypeScript, Next.js, Bootstrap, jQuery, Ajax, JSON, XML \\\\
-Cloud \\& Application Servers & Oracle Fusion ERP (exposure), AWS (VPC, EC2, S3, CloudFront, ELB), Azure, Tomcat, IBM WebSphere, Docker, Balena OS \\\\
-Version Control \\& Tools & Git, GitHub, Maven, Gradle, Jira, Jenkins, JUnit, JMeter, CI/CD, Lucidchart, Visio \\\\
-Databases \\& J2EE & MySQL, PostgreSQL, MongoDB, Oracle DB (exposure), Servlets, JSP, JSTL, JDBC, JavaBeans, JavaMail, Stored Procedures, SQL Triggers \\\\
-\\end{tabular}
-\\end{rSection}
 
-\\vspace{-0.8em}
-\\begin{rSection}{Experience}
+\\begin{center}
+    {\\LARGE \\textbf{Sahithi Vogeti}} \\\\
+    Irving, Texas \\textbar\\ \\href{mailto:sahithivogeti838@gmail.com}{sahithivogeti838@gmail.com} \\textbar\\ +1(314) 299-4332 \\textbar\\ \\href{https://www.linkedin.com/in/Sahithi-Vogeti}{linkedin.com/in/Sahithi-Vogeti}
+\\end{center}
 
-\\textbf{Software Engineer} \\textbar{} MetLife \\textbar{} Missouri, USA \\hfill \\textbf{Aug 2024 -- Present}
-\\vspace{-0.5em}
-\\begin{itemize}[leftmargin=*, itemsep=-0.5em, topsep=0em]
-    \\item Implemented Agile methodologies, boosting team productivity by \\textbf{15\\%} and accelerating project delivery by \\textbf{20\\%}.
-    \\item Engineered high-performance applications using Core Java, Spring Boot, and Microservices, improving scalability by \\textbf{30\\%} and reducing downtime by \\textbf{20\\%}.
-    \\item Developed responsive front-end interfaces using React.js, Angular, HTML, CSS, and JavaScript, achieving \\textbf{98\\%} cross-browser compatibility. Deployed AWS-based applications, reducing infrastructure costs by \\textbf{20\\%}.
-\\end{itemize}
-
-\\vspace{-0.5em}
-\\textbf{Software Engineer (Java)} \\textbar{} Nagarro Software Limited \\textbar{} India \\hfill \\textbf{Aug 2021 -- Dec 2022}
-\\vspace{-0.5em}
-\\begin{itemize}[leftmargin=*, itemsep=-0.5em, topsep=0em]
-    \\item \\textbf {Banking, Financial Services, and Insurance (BFSI)} lead for this team and Implemented REST APIs for seamless communication between front-end (React) and back-end (Java) for Realtime chat communication for banking domain
-website to reduce the confusion among new customers visiting the website, improving app efficiency by \\textbf{75\\%}.
-    \\item \\textbf {Mendix Development}: Collaborated on Siemens web portal using Mendix and Java, achieving a \\textbf{80\\%} reduction in development time and streamlined backend enhancements.
-\\end{itemize}
+\\section*{PROFESSIONAL SUMMARY}
+Insight-driven Data Analyst with expertise in architecting PostgreSQL databases, automating ETL pipelines, and scaling data infrastructure for high-performance analytics. Engineered end-to-end workflow automation, accelerating reporting efficiency by 30\\% while ensuring 99.99\\% data accuracy. Leveraged SQL, Python, Tableau, and Power BI to generate insights that enhanced marketing ROI, reduced operational bottlenecks, and supported strategic initiatives across cross-functional teams. Proven ability to apply Agile methodologies to optimize workflows and enhance collaboration across teams.
 
 \\vspace{-1.5em}
-\\textbf{Software Engineer} \\textbar{} Adons Soft Tech \\textbar{} India \\hfill \\textbf{Jan 2020 -- Aug 2021}
-\\vspace{-0.5em}
-\\begin{itemize}[leftmargin=*, itemsep=-0.5em, topsep=0em]
-    \\item Led waterfall project workflows, achieving \\textbf{100\\%} on-time delivery and maintaining clear phase-gate reviews.
-    \\item Developed high-performance backend systems using Core Java, Servlets, JSP, and JDBC, improving processing speed by \\textbf{45\\%}.
-    \\item Designed responsive UIs using HTML, CSS, Bootstrap, and JavaScript, enhancing user experience and increasing traffic by \\textbf{20\\%}.
+\\section*{SKILLS}
+\\begin{tabularx}{\\textwidth}{@{} >{\\bfseries}l X @{}}
+Quality Assurance \\& Testing:     & A/B testing, dashboard validation, performance optimization \\\\
+Languages \\& Databases:           & Python, SQL, PostgreSQL, AWS Redshift \\\\
+Methodologies \\& Tools:           & Agile (Scrum), JIRA, SharePoint, Microsoft Power Suite, ETL, Data Governance \\\\
+Visualization \\& Analytics:       & Power BI (DAX), Tableau, Adobe Analytics, Google Analytics \\\\
+Cloud \\& Other Tools:             & AWS Athena, Git, Hadoop, PySpark, Regression Analysis \\\\
+\\end{tabularx}
+
+\\vspace{-1em}
+\\section*{Professional Experience}
+
+\\noindent\\textbf{LOCAL GROWN SALADS} \\textbar{} \\textbf{Data Architect Intern} \\textit{(Revenue Team)} \\textbar{} \\textbf{Remote, USA} \\hfill \\textbf{FEB, 2025–Present} \\\\
+Directed data modeling for sustainable vertical farming systems, focusing on optimizing environmental inputs and crop growth metrics.
+\\begin{itemize}[leftmargin=*, itemsep=-0.3em, topsep=0em]
+    \\item Designed a scalable PostgreSQL database, accelerating query processing by \\textbf{40\\%} and improving data integrity.
+    \\item Developed automated SQL pipelines reducing manual reporting by \\textbf{50\\%} and cutting pipeline latency by \\textbf{25\\%}.
+    \\item Created analytics dashboards using Power BI and Tableau, enhancing data-driven decision-making efficiency by \\textbf{20\\%}.
+    \\item Led environmental data collection across 10+ scenarios, optimizing predictive modeling accuracy by \\textbf{35\\%}.
+    \\item Applied Agile principles to streamline iterative development cycles, improving team adaptability and project velocity by \\textbf{30\\%}.
+    \\item Implemented AI-powered data reconciliation techniques, reducing inconsistencies in environmental input tracking by \\textbf{30\\%}.
+\\end{itemize}
+
+\\noindent\\textbf{EXCELERATE} \\textbar{} \\textbf{Data Visualization Intern} \\textbar{} \\textbf{Saint Louis, MO} \\hfill \\textbf{AUG, 2023–OCT, 2023} \\\\
+Led a team in analyzing marketing performance and internal operations to support strategic campaign decisions.
+\\begin{itemize}[leftmargin=*, itemsep=-0.3em, topsep=0em]
+    \\item Managed super campaign data analysis for 10+ brands, increasing conversion metrics by \\textbf{18\\%}.
+    \\item Built Power BI dashboards improving tracking speed and reducing reporting turnaround by \\textbf{50\\%}.
+    \\item Presented weekly insights to executives, driving \\textbf{two} critical marketing strategy shifts.
+    \\item Adopted Agile methodologies to prioritize tasks dynamically, reducing bottlenecks and accelerating reporting timelines by \\textbf{25\\%}.
+\\end{itemize}
+
+\\noindent\\textbf{COGNIZANT TECHNOLOGY SOLUTIONS} \\textbar{} \\textbf{Program Analyst} \\textbar{} \\textbf{Chennai, IND} \\hfill \\textbf{DEC, 2020–DEC, 2022} \\\\
+Liaised digital marketing optimization and web analytics through Adobe tools and analytics. Crafted custom dashboards, enabled tracking, and reported business KPIs for client websites.
+\\begin{itemize}[leftmargin=*, itemsep=-0.3em, topsep=0em]
+    \\item Implemented advanced Adobe Analytics solutions, increasing data capture precision by \\textbf{30\\%}.
+    \\item Developed \\textbf{10+} interactive dashboards using Power BI and Tableau, streamlining cross-team reporting.
+    \\item Enhanced campaign ROI by \\textbf{20\\%} through targeted segmentation in Adobe Analytics and Google Ads.
+    \\item Led A/B testing and Adobe Target integration, improving user engagement by \\textbf{22\\%}.
+    \\item Processed over 1M records using Hive and PySpark, reducing data retrieval time by \\textbf{35\\%}.
+    \\item Leveraged Agile frameworks to iterate on marketing analytics projects, optimizing workflows and increasing cross-team collaboration by \\textbf{28\\%}.
 \\end{itemize}
 
 \\vspace{-0.5em}
-\\textbf{Co-Founder \\& Engineer} \\textbar{} Nithya Industries (Startup) \\textbar{} India \\hfill \\textbf{May 2021 -- Jan 2024}
+\\section*{Education}
+\\textbf{Master of Science in Information Systems}, Saint Louis University \\hfill \\textit{Saint Louis, MO} \\\\
+\\textbf{Bachelor of Science in Information Technology}, JNTU \\hfill \\textit{Andhra Pradesh, India}
+
 \\vspace{-0.5em}
-\\begin{itemize}[leftmargin=*, itemsep=-0.5em, topsep=0em]
-    \\item Spearheaded product design and marketing initiatives, launching \\textbf{5+} technical catalogues and campaigns, increasing retention by \\textbf{30\\%} and attracting clients from \\textbf{3+} countries.
-\\end{itemize}
+\\section*{Additional Information}
+\\textbf{Certifications:} CBDA (Certification in Business Data Analytics), SQL Optimization Strategies, Power BI for Financial Analytics \\\\
+\\textbf{Projects:} Assessment Banking Transaction Analytics, Financial Forecasting Models, SQL-Based Risk Assessment \\\\
 
-\\end{rSection}
-
-\\vspace{-0.8em}
-\\begin{rSection}{Achievements}
-\\begin{itemize}[leftmargin=*, itemsep=-0.5em, topsep=0em]
-    \\item Developed MVPs and POCs for \\textbf{5+} innovative software tools; ongoing research in scalable product solutions.
-    \\item National Champions, Mega ATV Championship 2021.
-\\end{itemize}
-\\end{rSection}
-
-\\vspace{-0.8em}
-\\begin{rSection}{Education}
-\\textbf{Master of Science in Computer Software Engineering} \\textbar{} Saint Louis University, Missouri, USA \\\\
-\\textbf{Bachelor of Engineering in Mechanical Engineering} \\textbar{} GRIET, Telangana, India
-\\end{rSection}
 \\end{document}
 `,
 };

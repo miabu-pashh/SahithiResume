@@ -37,25 +37,11 @@ export async function callGeminiAPI(prompt) {
       parsed = JSON.parse(cleaned);
     } catch (err) {
       console.error("❌ JSON Parse Error:", err);
-      console.error("❓ Problematic Response:\n", cleaned); // 🧪 help spot what's wrong
+      console.error("❓ Problematic Response:\n", cleaned);
       throw new Error("Failed to parse Gemini JSON response");
     }
-    // 🧠 Smart handling based on response shape
-    // if ("analysis" in parsed) {
-    //   // This is from ATS analysis prompt
-    //   return {
-    //     atsScore: parsed.atsScore,
-    //     gaps: parsed.gaps,
-    //     improvements: parsed.improvements,
-    //     summary: parsed.summary,
-    //   };
-    // }
 
     return {
-      summaryLatex: parsed.summaryLatex || "",
-      skillsLatex: parsed.skillsLatex || "",
-      metlifeLatex: parsed.metlifeLatex || "",
-      adonsLatex: parsed.adonsLatex || "",
       coverLetter: parsed.coverLetter || "",
       coldEmail: parsed.coldEmail || "",
       FinalResumeLatex: parsed.FinalResumeLatex || "",
@@ -67,14 +53,9 @@ export async function callGeminiAPI(prompt) {
         JSON.stringify(error.response?.data || error.message)
     );
     return {
-      summaryLatex: "",
-      skillsLatex: "",
-      metlifeLatex: "",
-      adonsLatex: "",
       coverLetter: "",
       coldEmail: "",
       FinalResumeLatex: "",
-      // analysis: "", // fallback in case ATS fails
     };
   }
 }
@@ -111,7 +92,6 @@ export async function callGeminiATSAPI(prompt) {
       console.error("❓ Problematic Response:\n", cleaned);
       throw new Error("Failed to parse Gemini JSON response");
     }
-
     return {
       atsScore: parsed.atsScore || "N/A",
       gaps: parsed.gaps || [],
