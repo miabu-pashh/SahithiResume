@@ -17,10 +17,6 @@ import { useNavigate } from "react-router-dom";
 function JDInput({ onJDUpdate }) {
   const [jobDesc, setJobDesc] = useState("");
   const [loading, setLoading] = useState(false);
-  const [summaryLatex, setSummaryLatex] = useState("");
-  const [skillsLatex, setSkillsLatex] = useState("");
-  const [metlifeLatex, setMetlifeLatex] = useState("");
-  const [adonsLatex, setAdonsLatex] = useState("");
   const [coverLetter, setCoverLetter] = useState("");
   const [coldEmail, setColdEmail] = useState("");
   const [FinalResumeLatex, setFinalResumeLatex] = useState("");
@@ -65,10 +61,6 @@ function JDInput({ onJDUpdate }) {
 
     const result = await callGeminiAPI(prompt);
 
-    setSummaryLatex(result.summaryLatex || "");
-    setSkillsLatex(result.skillsLatex || "");
-    setMetlifeLatex(result.metlifeLatex || "");
-    setAdonsLatex(result.adonsLatex || "");
     setCoverLetter(result.coverLetter || "");
     setColdEmail(result.coldEmail || "");
     setFinalResumeLatex(result.FinalResumeLatex || "");
@@ -115,11 +107,9 @@ function JDInput({ onJDUpdate }) {
             onClick={handleJD}
             disabled={loading}
           >
-
             {loading ? "Checking Job..." : "Job Matching/Unmatching"}
           </button>
 
-          
           {jobResult && (
             <div className="overlay">
               <div className="modal job-analysis-modal">
@@ -165,11 +155,6 @@ function JDInput({ onJDUpdate }) {
 
           <div className="mini-grid">
             {renderBox("Final Resume", FinalResumeLatex)}
-            {renderBox("Summary", summaryLatex)}
-            {renderBox("Tech Skills", skillsLatex)}
-            {renderBox("Met Life Work Exp", `${metlifeLatex}`)}
-            {/* {renderBox("Work Exp", `${metlifeLatex}\n\n${adonsLatex}`)} */}
-            {renderBox("Adons Work Exp", `${adonsLatex}`)}
           </div>
         </div>
 

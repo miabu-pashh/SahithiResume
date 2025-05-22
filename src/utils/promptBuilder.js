@@ -29,8 +29,26 @@ ${coldEmailTemplate}
 📌 YOUR TASK:
 ===========================
 Based on the job description below:
+1. ✏️ Update the **Summary section**:
+   - Rewrite my professional summary points according to the given job description.
+   -Dont add any new bullet points.
+   - Dont add education in professional summary.
+2. 🛠 Update the **Technical Skills section**:
+   - Make sure The skills I have in my resume are not touched, only remove the unwated skills and add the skills which are mandatory for the job description.
+   -When you add the new skills, try to remove the unwanted skills which are not relevant to the job description and make sure the total number of skills are same as before.
+   -Make sure the proper latex format is maintained. be carfeul with the latex format, and escape charectors.
+3. 🏢 Update **LOCAL GROWN SALADS**:
+    -Use new strong unique action verbs without repeating the same verbs which are not present in my resume.
+    - No buzz words add a quantitaive measure for the new bullet point.
+   - Rewrite all bullet points based on job description.
+   -Just rewrite but od not add any new bullet points.
+4. 🏢 Update **EXCELERATE**:
+-Use new strong unique action verbs without repeating the same verbs which are not present in my resume.
+   -No buzz words add a quantitaive measure for the new bullet point.
+   - Rewrite all bullet points based on job description.
+  -Just rewrite but od not add any new bullet points.
 
-
+5.With the above poits updated for latex,  Give me the Final latex code for the resume.
 5. 📄 Generate a professional **cover letter** using the cover letter template given to you, aligned with the job description. You have my resume and my cover letter template with you, just update my cover letter tempalte given to you.
 
 6. ✉️ Generate a personalized **cold email** to reach out to a recruiter, based on the cold email template and resume. make sure to update the cold email template with the job. make sure to include the missing values in the cold email template.
@@ -78,9 +96,18 @@ export const resumeTemplate = {
     {\\LARGE \\textbf{Sahithi Vogeti}} \\\\
     Irving, Texas \\textbar\\ \\href{mailto:sahithivogeti838@gmail.com}{sahithivogeti838@gmail.com} \\textbar\\ +1(314) 299-4332 \\textbar\\ \\href{https://www.linkedin.com/in/Sahithi-Vogeti}{linkedin.com/in/Sahithi-Vogeti}
 \\end{center}
-
+\\vspace{-0.8em}
 \\section*{PROFESSIONAL SUMMARY}
-Insight-driven Data Analyst with expertise in architecting PostgreSQL databases, automating ETL pipelines, and scaling data infrastructure for high-performance analytics. Engineered end-to-end workflow automation, accelerating reporting efficiency by 30\\% while ensuring 99.99\\% data accuracy. Leveraged SQL, Python, Tableau, and Power BI to generate insights that enhanced marketing ROI, reduced operational bottlenecks, and supported strategic initiatives across cross-functional teams. Proven ability to apply Agile methodologies to optimize workflows and enhance collaboration across teams.
+\\begin{itemize}[leftmargin=*, itemsep=-0.3em, topsep=0em]
+\\item Insight-driven Data Analyst with expertise in architecting PostgreSQL databases, automating ETL pipelines, and scaling data
+infrastructure for high-performance analytics.
+\\item Engineered end-to-end workflow automation, accelerating reporting efficiency by \\textbf{30\\%}
+while ensuring \\textbf{99.99\\%} data accuracy.
+\\item Leveraged SQL, Python, Tableau, and Power BI to generate insights that enhanced marketing
+ROI, reduced operational bottlenecks, and supported strategic initiatives across cross-functional teams.
+\\item Proven ability to apply Agile
+methodologies to optimize workflows and enhance collaboration across teams.\\
+\\end{itemize}
 
 \\vspace{-1.5em}
 \\section*{SKILLS}
@@ -126,12 +153,12 @@ Liaised digital marketing optimization and web analytics through Adobe tools and
     \\item Leveraged Agile frameworks to iterate on marketing analytics projects, optimizing workflows and increasing cross-team collaboration by \\textbf{28\\%}.
 \\end{itemize}
 
-\\vspace{-0.5em}
+\\vspace{-0.9em}
 \\section*{Education}
 \\textbf{Master of Science in Information Systems}, Saint Louis University \\hfill \\textit{Saint Louis, MO} \\\\
 \\textbf{Bachelor of Science in Information Technology}, JNTU \\hfill \\textit{Andhra Pradesh, India}
 
-\\vspace{-0.5em}
+\\vspace{-0.9em}
 \\section*{Additional Information}
 \\textbf{Certifications:} CBDA (Certification in Business Data Analytics), SQL Optimization Strategies, Power BI for Financial Analytics \\\\
 \\textbf{Projects:} Assessment Banking Transaction Analytics, Financial Forecasting Models, SQL-Based Risk Assessment \\\\
@@ -178,18 +205,10 @@ Subject: Experienced Java Full-Stack Engineer – Open to Opportunities
 
 Hi [Hiring Manager’s Name],
 
-I hope you're doing well. My name is Mahaboob Pasha Mohammad, and I’m a Software Engineer with over 4 years of experience in Java Full Stack Development, currently working at MetLife. I recently completed my Master’s in Software Engineering at Saint Louis University and have built scalable backend systems and responsive frontend apps across BFSI, Healthcare, and eCommerce domains.
-
-I’m reaching out to explore any potential opportunities at [Company Name] where my background in Core Java, Spring Boot, Microservices, and React/Angular could add value. I’ve attached my resume and cover letter for your reference and would welcome a brief chat if you're open to connecting.
-
-Thank you for your time and consideration.
+"Your content for email tempate here"
 
 Best regards,  
-Mahaboob Pasha Mohammad  
-mahaboobpashamohammad1@gmail.com | (314) 305-6056  
-LinkedIn: https://www.linkedin.com/in/mohammad-mahaboob-pasha-19ba58183/  
-Portfolio: https://miabu-pashh.github.io/Portfolio-maibu/  
-GitHub: https://github.com/miabu-pashh
+Sahithi Vogeti
 `;
 
 export const referralEmailTemplate = `
@@ -197,36 +216,22 @@ Subject: Quick Referral Request for [Job Title] Role at [Company Name]
 
 Hi [Referral's Name],
 
-I hope you're doing well! I came across the [Job Title] opening at [Company Name] and noticed you're connected with the team. I’m currently seeking full-time roles where I can leverage my experience in Java Full Stack development, Spring Boot, React, and AWS to build high-impact applications.
-
-Would you be open to referring me or pointing me in the right direction? I’ve attached my resume for your reference, and I’d be happy to provide a tailored message if needed.
-
-Thanks so much for your time and support!
+"your content for email tempate here"
 
 Warm regards,  
-Mahaboob Pasha Mohammad  
-mahaboobpashamohammad1@gmail.com | (314) 305-6056  
-LinkedIn: https://www.linkedin.com/in/mohammad-mahaboob-pasha-19ba58183/  
-Portfolio: https://miabu-pashh.github.io/Portfolio-maibu/
+Sahithi Vogeti  
+
 `;
 
 export const jobApplicationEmailTemplate = `
-Subject: Application for [Job Title] – Mahaboob Pasha Mohammad
+Subject: Application for [Job Title] – Sahithi Vogeti
 
 Dear [Hiring Manager's Name],
 
-I am excited to apply for the [Job Title] position at [Company Name]. With over 4 years of experience as a Software Engineer specializing in Java Full Stack development, along with a Master’s degree from Saint Louis University, I am confident in my ability to contribute effectively to your team.
-
-Please find my resume and cover letter attached for your review. I would welcome the opportunity to speak further about how my experience aligns with your current needs.
-
-Thank you for your time and consideration.
+"Your content here".
 
 Best regards,  
-Mahaboob Pasha Mohammad  
-mahaboobpashamohammad1@gmail.com | (314) 305-6056  
-LinkedIn: https://www.linkedin.com/in/mohammad-mahaboob-pasha-19ba58183/  
-Portfolio: https://miabu-pashh.github.io/Portfolio-maibu/  
-GitHub: https://github.com/miabu-pashh
+Sahithi Vogeti
 `;
 
 export function buildATSAnalysisPrompt({ jobDescription, resumeTemplate }) {

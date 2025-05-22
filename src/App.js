@@ -1,8 +1,6 @@
 // Updated App.js with diff viewer for resume changes
 import React, { useState } from "react";
 import JDInput from "./components/JDInput";
-import CoverLetter from "./components/CoverLetter";
-import ColdEmail from "./components/ColdEmail";
 import ResumeDiffViewer from "./components/ResumeDiffViewer";
 import "./App.css";
 import ATSAnalysis from "./components/ATSAnalysis";
